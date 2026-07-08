@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>La Barberia del Puerto — Raúl Giménez · Burriana</title>
   <meta name="description" content="Barbería en Burriana. Corte, barba y mucho más. Pide cita online o llámanos: 657 565 135." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -13,10 +16,10 @@
       --gold-light: #E8C76A;
       --black:      #0a0a0a;
       --dark:       #111111;
-      --card:       #1c1c1c;
+      --card:       #1a1a1a;
       --border:     #2a2a2a;
       --text:       #e8e8e8;
-      --text-muted: #999;
+      --text-muted: #888;
       --error:      #e53e3e;
       --success:    #38a169;
     }
@@ -33,46 +36,141 @@
     /* ── HERO ── */
     .hero {
       background: #000;
-      border-bottom: 1px solid var(--border);
-      padding: 0 0 48px;
+      padding: 0 0 56px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 40px,
+        rgba(201,168,76,0.025) 40px,
+        rgba(201,168,76,0.025) 41px
+      );
+      pointer-events: none;
     }
     .hero-logo {
       width: 100%;
       max-width: 680px;
       height: auto;
       display: block;
-      margin: 0 auto 16px;
+      margin: 0 auto 4px;
+      position: relative;
+    }
+    .hero-tagline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-size: 18px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      letter-spacing: 0.3px;
+    }
+    .hero-divider {
+      width: 48px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0 auto 28px;
     }
     .hero-cta {
       display: inline-block;
       background: var(--gold); color: var(--black);
       font-size: 16px; font-weight: 700;
-      padding: 14px 36px; border-radius: 8px;
+      padding: 14px 40px; border-radius: 8px;
       text-decoration: none; transition: background 0.2s;
+      letter-spacing: 0.3px;
     }
     .hero-cta:hover { background: var(--gold-light); }
 
+    /* ── FEATURES STRIP ── */
+    .features {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: #111;
+      padding: 52px 24px;
+    }
+    .features-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 36px;
+    }
+    .feature-item { text-align: center; }
+    .feature-icon {
+      width: 54px; height: 54px;
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 14px;
+      background: rgba(201,168,76,0.06);
+    }
+    .feature-icon svg {
+      width: 22px; height: 22px;
+      fill: none;
+      stroke: var(--gold);
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .feature-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 16px;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .feature-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
     /* ── SECTIONS ── */
     .section { padding: 64px 24px; max-width: 900px; margin: 0 auto; }
-    .section-title {
-      font-size: 13px; font-weight: 700; color: var(--gold);
-      text-transform: uppercase; letter-spacing: 2px;
-      margin-bottom: 28px;
-      display: flex; align-items: center; gap: 12px;
+    .section-eyebrow {
+      font-size: 11px; font-weight: 700; color: var(--gold);
+      text-transform: uppercase; letter-spacing: 2.5px;
+      margin-bottom: 10px;
     }
-    .section-title::after {
-      content: ""; flex: 1; height: 1px; background: var(--border);
+    .section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 26px; font-weight: 700;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .section-rule {
+      width: 36px; height: 2px;
+      background: var(--gold);
+      margin-bottom: 36px;
     }
 
     /* ── INFO ── */
     .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
     .info-card {
       background: var(--card); border: 1px solid var(--border);
-      border-radius: 12px; padding: 24px 20px;
+      border-radius: 12px; padding: 22px 20px;
+      display: flex; gap: 16px; align-items: flex-start;
     }
-    .info-card-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
-    .info-card-value { font-size: 15px; color: var(--text); line-height: 1.6; }
+    .info-card-icon {
+      flex-shrink: 0;
+      width: 38px; height: 38px;
+      border-radius: 8px;
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.2);
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 2px;
+    }
+    .info-card-icon svg {
+      width: 16px; height: 16px;
+      stroke: var(--gold); fill: none;
+      stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .info-card-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+    .info-card-value { font-size: 14px; color: var(--text); line-height: 1.6; }
     .info-card-value a { color: var(--gold); text-decoration: none; }
     .info-card-value a:hover { text-decoration: underline; }
     .horario-row { display: flex; justify-content: space-between; gap: 8px; font-size: 14px; margin-bottom: 4px; }
@@ -113,7 +211,7 @@
       background: var(--black);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 12px 12px;
+      padding: 12px;
       margin-top: 4px;
     }
     .cal-nav {
@@ -160,9 +258,7 @@
     .cal-day.empty { cursor: default; pointer-events: none; }
 
     /* ── SLOTS ── */
-    .slots-wrap {
-      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px;
-    }
+    .slots-wrap { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
     .slot-btn {
       background: var(--black); border: 1px solid var(--border);
       color: var(--text); border-radius: 8px;
@@ -192,15 +288,22 @@
 
     /* ── FOOTER ── */
     footer {
-      border-top: 1px solid var(--border); padding: 32px 24px;
+      border-top: 1px solid var(--border); padding: 36px 24px;
       text-align: center; color: var(--text-muted); font-size: 13px;
     }
     footer a { color: var(--gold); text-decoration: none; }
+    .footer-brand {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 15px;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
       .reserva-wrap { padding: 24px 18px; }
-      .cal-day { font-size: 13px; }
+      .features-inner { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .section-title { font-size: 22px; }
     }
   </style>
 </head>
@@ -209,50 +312,132 @@
 <!-- HERO -->
 <section class="hero">
   <img src="logo.png" alt="La Barberia del Puerto" class="hero-logo" />
-  <br>
+  <p class="hero-tagline">Tu barbería de confianza en Burriana</p>
+  <div class="hero-divider"></div>
   <a href="#reservar" class="hero-cta">Pedir cita online</a>
 </section>
 
+<!-- FEATURES STRIP -->
+<div class="features">
+  <div class="features-inner">
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24">
+          <circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/>
+          <line x1="20" y1="4" x2="8.12" y2="15.88"/>
+          <line x1="14.47" y1="14.48" x2="20" y2="20"/>
+          <line x1="8.12" y1="8.12" x2="12" y2="12"/>
+        </svg>
+      </div>
+      <div class="feature-title">Corte de pelo</div>
+      <div class="feature-desc">Clásico o moderno, siempre con precisión</div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M5 3h14a1 1 0 0 1 1 1v3H4V4a1 1 0 0 1 1-1z"/>
+          <rect x="3" y="7" width="18" height="13" rx="1"/>
+          <line x1="7" y1="11" x2="17" y2="11"/>
+          <line x1="7" y1="15" x2="13" y2="15"/>
+        </svg>
+      </div>
+      <div class="feature-title">Arreglo de barba</div>
+      <div class="feature-desc">Perfilado, recorte y afeitado profesional</div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+          <polyline points="9 16 11 18 15 14"/>
+        </svg>
+      </div>
+      <div class="feature-title">Reserva online</div>
+      <div class="feature-desc">Elige día y hora en segundos, sin llamadas</div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+          <circle cx="12" cy="9" r="2.5"/>
+        </svg>
+      </div>
+      <div class="feature-title">Centro de Burriana</div>
+      <div class="feature-desc">Avinguda Mediterrània, 27 · Fácil aparcamiento</div>
+    </div>
+
+  </div>
+</div>
+
 <!-- INFO -->
 <div class="section">
-  <div class="section-title">Información</div>
+  <div class="section-eyebrow">Dónde encontrarnos</div>
+  <div class="section-title">Información y horario</div>
+  <div class="section-rule"></div>
   <div class="info-grid">
+
     <div class="info-card">
-      <div class="info-card-label">Dirección</div>
-      <div class="info-card-value">
-        Avinguda Mediterrània, 27 (bajo)<br>
-        12530 Burriana, Castelló
+      <div class="info-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
       </div>
-    </div>
-    <div class="info-card">
-      <div class="info-card-label">Teléfono</div>
-      <div class="info-card-value">
-        <a href="tel:+34657565135">657 565 135</a>
-      </div>
-    </div>
-    <div class="info-card">
-      <div class="info-card-label">Horario</div>
-      <div class="info-card-value">
-        <div class="horario-row">
-          <span class="horario-dia">Lun – Vie</span>
-          <span>9:30–13:30 / 16:30–19:30</span>
-        </div>
-        <div class="horario-row">
-          <span class="horario-dia">Sábado</span>
-          <span>9:30–13:30</span>
-        </div>
-        <div class="horario-row">
-          <span class="horario-dia">Domingo</span>
-          <span>Cerrado</span>
+      <div>
+        <div class="info-card-label">Dirección</div>
+        <div class="info-card-value">
+          Avinguda Mediterrània, 27 (bajo)<br>
+          12530 Burriana, Castelló
         </div>
       </div>
     </div>
+
+    <div class="info-card">
+      <div class="info-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.13 12.7a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.07 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </div>
+      <div>
+        <div class="info-card-label">Teléfono</div>
+        <div class="info-card-value">
+          <a href="tel:+34657565135">657 565 135</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-card-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div>
+        <div class="info-card-label">Horario</div>
+        <div class="info-card-value">
+          <div class="horario-row">
+            <span class="horario-dia">Lun – Vie</span>
+            <span>9:30–13:30 / 16:30–19:30</span>
+          </div>
+          <div class="horario-row">
+            <span class="horario-dia">Sábado</span>
+            <span>9:30–13:30</span>
+          </div>
+          <div class="horario-row">
+            <span class="horario-dia">Domingo</span>
+            <span>Cerrado</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
 <!-- MAPA -->
 <div class="section" style="padding-top: 0;">
-  <div class="section-title">Cómo llegar</div>
+  <div class="section-eyebrow">Cómo llegar</div>
+  <div class="section-title">Ubicación</div>
+  <div class="section-rule"></div>
   <div class="map-wrap">
     <iframe
       src="https://maps.google.com/maps?q=Avinguda+Mediterr%C3%A0nia+27+12530+Burriana+Castell%C3%B3+Spain&output=embed"
@@ -265,7 +450,9 @@
 
 <!-- RESERVA -->
 <div class="section" id="reservar">
-  <div class="section-title">Pedir cita online</div>
+  <div class="section-eyebrow">Reserva online</div>
+  <div class="section-title">Pide tu cita</div>
+  <div class="section-rule"></div>
   <div class="reserva-wrap">
     <form id="form-reserva">
 
@@ -314,8 +501,9 @@
 </div>
 
 <footer>
-  <p>© 2026 La Barberia del Puerto · Raúl Giménez · Burriana, Castelló</p>
-  <p style="margin-top: 8px;">
+  <div class="footer-brand">La Barberia del Puerto</div>
+  <p>Raúl Giménez · Burriana, Castelló · <a href="tel:+34657565135">657 565 135</a></p>
+  <p style="margin-top: 12px;">
     <a href="https://cuxy.app/privacidad" target="_blank">Política de privacidad</a>
   </p>
 </footer>
@@ -325,7 +513,7 @@
   const pad = n => String(n).padStart(2, "0");
   const MESES = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 
-  let serviciosData  = [];
+  let serviciosData     = [];
   let horaSeleccionada  = null;
   let fechaSeleccionada = null;
   let calYear, calMonth;
@@ -357,7 +545,7 @@
     hoy.setHours(0, 0, 0, 0);
 
     const primerDia = new Date(calYear, calMonth, 1);
-    const startDow  = (primerDia.getDay() + 6) % 7; // Mon=0 … Sun=6
+    const startDow  = (primerDia.getDay() + 6) % 7;
 
     for (let i = 0; i < startDow; i++) {
       const el = document.createElement("div");
@@ -383,8 +571,8 @@
       } else {
         el.addEventListener("click", () => seleccionarFecha(fechaStr));
       }
-      if (isHoy)  el.classList.add("today");
-      if (isSel)  el.classList.add("selected");
+      if (isHoy) el.classList.add("today");
+      if (isSel) el.classList.add("selected");
       el.textContent = d;
       grid.appendChild(el);
     }
