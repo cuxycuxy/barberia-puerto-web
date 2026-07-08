@@ -3,22 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>La Barberia del Puerto — Raúl Giménez · Borriana</title>
-  <meta name="description" content="Barbería en el Puerto de Burriana. Corte, barba y mucho más. Pide cita online o llámanos: 657 565 135." />
+  <title>La Barberia del Puerto — Raúl Giménez · Burriana</title>
+  <meta name="description" content="Barbería en Burriana. Corte, barba y mucho más. Pide cita online o llámanos: 657 565 135." />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --gold:       #C9A84C;
       --gold-light: #E8C76A;
-      --gold-bg:    #1a1508;
       --black:      #0a0a0a;
       --dark:       #111111;
       --card:       #1c1c1c;
       --border:     #2a2a2a;
       --text:       #e8e8e8;
       --text-muted: #999;
-      --white:      #ffffff;
       --error:      #e53e3e;
       --success:    #38a169;
     }
@@ -32,42 +30,18 @@
       line-height: 1.6;
     }
 
-    /* ── NAV ── */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(10,10,10,0.95);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 24px;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 64px;
-    }
-    .nav-logo { font-size: 16px; font-weight: 700; color: var(--gold); letter-spacing: 0.5px; }
-    .nav-tel  { font-size: 15px; color: var(--gold); font-weight: 600; text-decoration: none; }
-    .nav-tel:hover { color: var(--gold-light); }
-
     /* ── HERO ── */
     .hero {
       background: var(--dark);
       border-bottom: 1px solid var(--border);
-      padding: 80px 24px 60px;
+      padding: 60px 24px 52px;
       text-align: center;
     }
-    .hero-ornament {
-      font-size: 48px; line-height: 1; margin-bottom: 20px;
-      color: var(--gold); opacity: 0.8;
-    }
-    .hero h1 {
-      font-size: clamp(32px, 6vw, 56px);
-      font-weight: 800;
-      color: var(--gold);
-      letter-spacing: -0.5px;
-      line-height: 1.1;
-      margin-bottom: 8px;
-    }
-    .hero-sub {
-      font-size: 18px; color: var(--text-muted); font-weight: 400;
-      letter-spacing: 3px; text-transform: uppercase; margin-bottom: 32px;
+    .hero-logo {
+      width: 240px;
+      max-width: 72%;
+      height: auto;
+      margin-bottom: 28px;
     }
     .hero-cta {
       display: inline-block;
@@ -116,18 +90,75 @@
       border-radius: 16px; padding: 36px 32px;
     }
     .form-group { margin-bottom: 20px; }
-    label { display: block; font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-    input, select {
+    label {
+      display: block; font-size: 13px; font-weight: 600;
+      color: var(--text-muted); margin-bottom: 8px;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    input[type="text"], input[type="tel"], select {
       width: 100%; background: var(--black); color: var(--text);
       border: 1px solid var(--border); border-radius: 10px;
       padding: 13px 16px; font-size: 15px; outline: none;
       transition: border-color 0.2s;
       appearance: none; -webkit-appearance: none;
     }
-    input:focus, select:focus { border-color: var(--gold); }
+    input[type="text"]:focus,
+    input[type="tel"]:focus,
+    select:focus { border-color: var(--gold); }
     input::placeholder { color: var(--text-muted); }
 
-    /* Slots de hora */
+    /* ── CALENDARIO ── */
+    .cal-outer {
+      background: var(--black);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 16px;
+      margin-top: 4px;
+    }
+    .cal-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .cal-nav-btn {
+      background: none; border: 1px solid var(--border);
+      color: var(--gold); border-radius: 8px;
+      width: 36px; height: 36px; font-size: 22px;
+      cursor: pointer; transition: border-color 0.15s;
+      display: flex; align-items: center; justify-content: center;
+      line-height: 1;
+    }
+    .cal-nav-btn:hover { border-color: var(--gold); }
+    .cal-title-text { font-weight: 700; color: var(--text); font-size: 15px; }
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 3px;
+    }
+    .cal-dow {
+      text-align: center; font-size: 11px; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.5px;
+      padding: 6px 2px 10px;
+    }
+    .cal-day {
+      aspect-ratio: 1;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; border-radius: 8px; cursor: pointer;
+      border: 1px solid transparent; transition: all 0.15s;
+      user-select: none;
+    }
+    .cal-day:hover:not(.disabled):not(.selected) {
+      border-color: var(--gold); color: var(--gold);
+    }
+    .cal-day.today { color: var(--gold); font-weight: 700; }
+    .cal-day.selected {
+      background: var(--gold); color: var(--black);
+      font-weight: 700; border-color: var(--gold);
+    }
+    .cal-day.selected.today { background: var(--gold); color: var(--black); }
+    .cal-day.disabled { color: #333; cursor: not-allowed; }
+    .cal-day.empty { cursor: default; pointer-events: none; }
+
+    /* ── SLOTS ── */
     .slots-wrap {
       display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px;
     }
@@ -168,22 +199,16 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
       .reserva-wrap { padding: 24px 18px; }
-      nav { padding: 0 16px; }
+      .cal-day { font-size: 13px; }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <span class="nav-logo">La Barberia del Puerto</span>
-  <a class="nav-tel" href="tel:+34657565135">657 565 135</a>
-</nav>
-
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-ornament">✂</div>
-  <h1>La Barberia<br>del Puerto</h1>
-  <p class="hero-sub">Raúl Giménez · Borriana</p>
+  <img src="logo.png" alt="La Barberia del Puerto" class="hero-logo" />
+  <br>
   <a href="#reservar" class="hero-cta">Pedir cita online</a>
 </section>
 
@@ -244,7 +269,7 @@
     <form id="form-reserva">
 
       <div class="form-group">
-        <label for="nombre">Nombre *</label>
+        <label for="nombre">Nombre completo *</label>
         <input type="text" id="nombre" placeholder="Tu nombre completo" required />
       </div>
 
@@ -261,16 +286,24 @@
       </div>
 
       <div class="form-group">
-        <label for="fecha">Fecha *</label>
-        <input type="date" id="fecha" required />
+        <label>Fecha *</label>
+        <div class="cal-outer">
+          <div class="cal-nav">
+            <button type="button" class="cal-nav-btn" id="cal-prev">&#8249;</button>
+            <span class="cal-title-text" id="cal-title"></span>
+            <button type="button" class="cal-nav-btn" id="cal-next">&#8250;</button>
+          </div>
+          <div class="cal-grid" id="cal-grid"></div>
+        </div>
+        <input type="hidden" id="fecha" />
       </div>
 
       <div class="form-group">
         <label>Hora *</label>
         <div id="slots-container">
-          <p class="slots-vacio">Selecciona primero una fecha.</p>
+          <p class="slots-vacio">Selecciona una fecha en el calendario.</p>
         </div>
-        <input type="hidden" id="hora" required />
+        <input type="hidden" id="hora" />
       </div>
 
       <button type="submit" class="btn-reservar" id="btn-enviar" disabled>Confirmar cita</button>
@@ -288,55 +321,107 @@
 
 <script>
   const API = "https://barberia-puerto-api.cuxy.app";
-  let serviciosData = [];
-  let horaSeleccionada = null;
+  const pad = n => String(n).padStart(2, "0");
+  const MESES = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 
-  // ── Fecha mínima = hoy ──
-  const hoy = new Date();
-  const pad  = n => String(n).padStart(2, "0");
-  document.getElementById("fecha").min = `${hoy.getFullYear()}-${pad(hoy.getMonth()+1)}-${pad(hoy.getDate())}`;
+  let serviciosData  = [];
+  let horaSeleccionada  = null;
+  let fechaSeleccionada = null;
+  let calYear, calMonth;
 
-  // ── Cargar servicios ──
-  fetch(`${API}/servicios`)
-    .then(r => r.json())
-    .then(data => {
-      serviciosData = data.servicios || [];
-      if (serviciosData.length > 0) {
-        const sel = document.getElementById("servicio");
-        serviciosData.forEach(s => {
-          const opt = document.createElement("option");
-          opt.value = s.id;
-          opt.textContent = s.nombre;
-          opt.dataset.color = s.color;
-          opt.dataset.nombre = s.nombre;
-          sel.appendChild(opt);
-        });
-        document.getElementById("grupo-servicio").style.display = "block";
+  // ── CALENDARIO ──
+  function initCalendar() {
+    const hoy = new Date();
+    calYear  = hoy.getFullYear();
+    calMonth = hoy.getMonth();
+    renderCalendar();
+    if (hoy.getDay() !== 0) {
+      seleccionarFecha(`${calYear}-${pad(calMonth+1)}-${pad(hoy.getDate())}`);
+    }
+  }
+
+  function renderCalendar() {
+    const grid = document.getElementById("cal-grid");
+    document.getElementById("cal-title").textContent = `${MESES[calMonth]} ${calYear}`;
+    grid.innerHTML = "";
+
+    ["L","M","X","J","V","S","D"].forEach(d => {
+      const el = document.createElement("div");
+      el.className = "cal-dow";
+      el.textContent = d;
+      grid.appendChild(el);
+    });
+
+    const hoy = new Date();
+    hoy.setHours(0, 0, 0, 0);
+
+    const primerDia = new Date(calYear, calMonth, 1);
+    const startDow  = (primerDia.getDay() + 6) % 7; // Mon=0 … Sun=6
+
+    for (let i = 0; i < startDow; i++) {
+      const el = document.createElement("div");
+      el.className = "cal-day empty";
+      grid.appendChild(el);
+    }
+
+    const diasEnMes = new Date(calYear, calMonth + 1, 0).getDate();
+
+    for (let d = 1; d <= diasEnMes; d++) {
+      const fecha    = new Date(calYear, calMonth, d);
+      const fechaStr = `${calYear}-${pad(calMonth+1)}-${pad(d)}`;
+      const dow      = fecha.getDay();
+      const isPasado = fecha < hoy;
+      const isDomingo = dow === 0;
+      const isHoy    = fecha.getTime() === hoy.getTime();
+      const isSel    = fechaStr === fechaSeleccionada;
+
+      const el = document.createElement("div");
+      el.className = "cal-day";
+      if (isPasado || isDomingo) {
+        el.classList.add("disabled");
+      } else {
+        el.addEventListener("click", () => seleccionarFecha(fechaStr));
       }
-    })
-    .catch(() => {});
+      if (isHoy)  el.classList.add("today");
+      if (isSel)  el.classList.add("selected");
+      el.textContent = d;
+      grid.appendChild(el);
+    }
+  }
 
-  // ── Cambio de fecha → cargar slots ──
-  document.getElementById("fecha").addEventListener("change", async function () {
-    const fecha = this.value;
-    if (!fecha) return;
-
-    const container = document.getElementById("slots-container");
-    container.innerHTML = '<p class="slots-loading">Cargando horarios disponibles...</p>';
+  function seleccionarFecha(fechaStr) {
+    fechaSeleccionada = fechaStr;
+    document.getElementById("fecha").value = fechaStr;
     horaSeleccionada = null;
     document.getElementById("hora").value = "";
     actualizarBoton();
+    renderCalendar();
+    cargarSlots(fechaStr);
+  }
 
+  document.getElementById("cal-prev").addEventListener("click", () => {
+    calMonth--;
+    if (calMonth < 0) { calMonth = 11; calYear--; }
+    renderCalendar();
+  });
+  document.getElementById("cal-next").addEventListener("click", () => {
+    calMonth++;
+    if (calMonth > 11) { calMonth = 0; calYear++; }
+    renderCalendar();
+  });
+
+  // ── SLOTS ──
+  async function cargarSlots(fecha) {
+    const container = document.getElementById("slots-container");
+    container.innerHTML = '<p class="slots-loading">Cargando horarios disponibles...</p>';
     try {
       const res  = await fetch(`${API}/disponibilidad?fecha=${fecha}`);
       const data = await res.json();
       const slots = data.slots_disponibles || [];
-
       if (slots.length === 0) {
-        container.innerHTML = '<p class="slots-vacio">No hay huecos disponibles para ese día.</p>';
+        container.innerHTML = '<p class="slots-vacio">No hay huecos disponibles para este día.</p>';
         return;
       }
-
       container.innerHTML = '<div class="slots-wrap"></div>';
       const wrap = container.querySelector(".slots-wrap");
       slots.forEach(hora => {
@@ -347,10 +432,10 @@
         btn.addEventListener("click", () => seleccionarHora(hora, btn));
         wrap.appendChild(btn);
       });
-    } catch (e) {
-      container.innerHTML = '<p class="slots-vacio">Error al cargar los horarios. Inténtalo de nuevo.</p>';
+    } catch {
+      container.innerHTML = '<p class="slots-vacio">Error al cargar horarios. Inténtalo de nuevo.</p>';
     }
-  });
+  }
 
   function seleccionarHora(hora, btn) {
     document.querySelectorAll(".slot-btn").forEach(b => b.classList.remove("activo"));
@@ -364,17 +449,36 @@
     const ok = horaSeleccionada
       && document.getElementById("nombre").value.trim()
       && document.getElementById("telefono").value.trim()
-      && document.getElementById("fecha").value;
+      && fechaSeleccionada;
     document.getElementById("btn-enviar").disabled = !ok;
   }
 
   document.getElementById("nombre").addEventListener("input", actualizarBoton);
   document.getElementById("telefono").addEventListener("input", actualizarBoton);
 
-  // ── Envío del formulario ──
+  // ── SERVICIOS ──
+  fetch(`${API}/servicios`)
+    .then(r => r.json())
+    .then(data => {
+      serviciosData = data.servicios || [];
+      if (serviciosData.length > 0) {
+        const sel = document.getElementById("servicio");
+        serviciosData.forEach(s => {
+          const opt = document.createElement("option");
+          opt.value = s.id;
+          opt.textContent = s.nombre;
+          opt.dataset.color  = s.color;
+          opt.dataset.nombre = s.nombre;
+          sel.appendChild(opt);
+        });
+        document.getElementById("grupo-servicio").style.display = "block";
+      }
+    })
+    .catch(() => {});
+
+  // ── ENVÍO ──
   document.getElementById("form-reserva").addEventListener("submit", async function (e) {
     e.preventDefault();
-
     const btn = document.getElementById("btn-enviar");
     const msg = document.getElementById("form-msg");
     btn.disabled = true;
@@ -388,7 +492,7 @@
     const body = {
       nombre:          document.getElementById("nombre").value.trim(),
       telefono:        document.getElementById("telefono").value.trim(),
-      fecha:           document.getElementById("fecha").value,
+      fecha:           fechaSeleccionada,
       hora:            horaSeleccionada,
       servicio_id:     srvId || null,
       servicio_nombre: srvId ? srvOpt.dataset.nombre : null,
@@ -408,20 +512,24 @@
         msg.textContent = data.mensaje || "¡Cita confirmada!";
         msg.style.display = "block";
         this.reset();
-        document.getElementById("slots-container").innerHTML = '<p class="slots-vacio">Selecciona primero una fecha.</p>';
-        horaSeleccionada = null;
-        btn.disabled = true;
+        horaSeleccionada  = null;
+        fechaSeleccionada = null;
+        initCalendar();
+        actualizarBoton();
       } else {
         throw new Error(data.detail || "Error al reservar");
       }
     } catch (err) {
       msg.className = "form-msg error";
-      msg.textContent = err.message || "Error al conectar con el servidor. Llámanos al 657 565 135.";
+      msg.textContent = err.message || "Error al conectar. Llámanos al 657 565 135.";
       msg.style.display = "block";
       btn.disabled = false;
     }
     btn.textContent = "Confirmar cita";
   });
+
+  // ── INIT ──
+  initCalendar();
 </script>
 
 </body>
