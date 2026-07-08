@@ -21,7 +21,14 @@ Web pública de reservas para La Barberia del Puerto (Raúl Giménez, Burriana).
 - Repo: cuxycuxy/barberia-puerto-web (público)
 - Workers & Pages → Create → Connect to Git → barberia-puerto-web → rama main → sin build command → directorio raíz /
 
+## 09/07/2026 — Rediseño web completo + dominio + prueba reserva
+
+- Nav eliminada (nombre y teléfono ya están en hero e info)
+- Hero: logo de Raúl (PNG 1024x1024, fondo #000 exacto), ancho hasta 680px, sin recuadro visible
+- Formulario de reserva: `<input type="date">` reemplazado por **calendario inline** en CSS/JS puro — muestra el mes actual, hoy seleccionado por defecto con slots ya cargados, domingos y días pasados deshabilitados, navegación con flechas
+- Calendario compacto (celdas 34px) para no desproporcionarse respecto al resto del formulario
+- **Dominio personalizado**: `labarberiadelpuerto.cuxy.app` activo en Cloudflare Workers
+- **Prueba real**: reserva hecha desde la web → cita apareció en tiempo real en la app de Raúl (Expo Go)
+
 **Pendiente:**
-- Conectar a Cloudflare Pages (Oscar)
-- Añadir dominio personalizado si Raúl tiene uno
 - Fotos reales del local cuando Raúl las proporcione
