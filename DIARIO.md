@@ -1,5 +1,18 @@
 # DIARIO — barberia-puerto-web
 
+## 20/07/2026 — Dominio propio para Raúl: precio acordado, pendiente de compra y migración
+
+**Contexto**: la web vive en `labarberiadelpuerto.cuxy.app` (subdominio de Cuxy). Oscar le ofrece a Raúl la opción de tener su propio dominio (`barberiadelpuerto.es`, ~16€/año) para que, si la relación con Cuxy termina en algún momento, él conserve el dominio de su web y de su app.
+
+**Precio acordado** (aplica también como plantilla para futuros clientes de CitaBot/MenuWeb en el mismo caso):
+- **50€ pago único** por la gestión inicial: registrar el dominio y configurarlo (DNS, apuntar la web y lo que haga falta).
+- **50€ cada 3 años** en concepto de "gestión y renovación de dominio" — cubre el coste real (3 × 16€/año ≈ 48€) más un margen mínimo. No se plantea como partida de beneficio: el beneficio de esta relación viene de la mensualidad (30€/mes), el dominio solo tiene que no dar pérdidas. Evitar en el contrato justificarlo como "el dominio vale más dinero" (no es cierto y es comprobable por el cliente) — mejor "gestión y renovación de dominio: 50€/3 años", más honesto y sin flancos.
+- Redactar esta cláusula en la plantilla de contrato de `cuxy-empresa/4-contratos/` cuando se confirme con Raúl.
+
+**Pendiente**: Oscar va a comprar `barberiadelpuerto.es`. Una vez comprado, migrar la web desde `labarberiadelpuerto.cuxy.app` a la URL propia (Cloudflare Pages: añadir dominio personalizado, actualizar DNS, redirigir la URL antigua) y revisar si `citabotapp-barberia-puerto` o `barberia-puerto-api` referencian la URL vieja en algún sitio (recordatorios WhatsApp, enlaces, etc.).
+
+---
+
 ## 08/07/2026 — Creación del proyecto
 
 Web pública de reservas para La Barberia del Puerto (Raúl Giménez, Burriana).
