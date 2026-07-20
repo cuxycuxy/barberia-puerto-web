@@ -11,6 +11,8 @@
 
 **Pendiente**: Oscar va a comprar `barberiadelpuerto.es`. Una vez comprado, migrar la web desde `labarberiadelpuerto.cuxy.app` a la URL propia (Cloudflare Pages: añadir dominio personalizado, actualizar DNS, redirigir la URL antigua) y revisar si `citabotapp-barberia-puerto` o `barberia-puerto-api` referencian la URL vieja en algún sitio (recordatorios WhatsApp, enlaces, etc.).
 
+**Titularidad**: se registra con los datos de Oscar (no de Raúl) — idea propia de Oscar, no comentada aún con el cliente. Si en el futuro hay que traspasarlo de verdad a Raúl (o a quien él decida), el camino es la **"Transmisión de dominio" de Red.es** (`www.dominios.es`, no Namecheap): se solicita desde ahí con los datos del nuevo titular, este confirma por email (`plandedominios@red.es`), resolución en 1-3 días laborables. Puede pedir certificado digital (DNIe) de alguna de las partes — comprobar eso cuando llegue el momento. La opción "Change Ownership" de Namecheap NO sirve para esto en `.es` (solo mueve la cuenta que gestiona el dominio, obliga a mantener los contactos actuales).
+
 ---
 
 ## 08/07/2026 — Creación del proyecto
